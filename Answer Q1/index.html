@@ -1,0 +1,148 @@
+<html>
+<script src="https://smtpjs.com/v3/smtp.js">
+</script>
+<script>
+
+function save(){
+
+console.log("started");
+	var inputName= document.getElementById("name");
+     localStorage.setItem("name", inputName.value);
+
+     var inputEmail= document.getElementById("email");
+     localStorage.setItem("email", inputEmail.value);
+
+var inputMob= document.getElementById("mob");
+     localStorage.setItem("mobile", inputMob.value);
+
+var inputMessage= document.getElementById("message");
+     localStorage.setItem("message", inputMessage.value);
+
+// var inputWebsite= document.getElementById("website");
+//      localStorage.setItem("website", inputWebsite.value);
+console.log(inputEmail.value);
+
+    }
+
+	jQuery('#frmContactus').on('submit',function(e){
+		jQuery('#msg').html('');
+		jQuery('#submit').html('Please wait');
+		jQuery('#submit').attr('disabled',true);
+		jQuery.ajax({
+			url:'submt.php',
+			type:'post',
+			data:jQuery('#frmContactus').serialize(),
+			success:function(result){
+				jQuery('#msg').html(result);
+				jQuery('#submit').html('Submit');
+				jQuery('#submit').attr('disabled',false);
+				jQuery('#frmContactus')[0].reset();
+			}
+		});
+		e.preventDefault();
+	  });
+	  
+ 
+
+</script>
+
+<style>
+
+
+* {
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+	
+}
+
+body {
+
+	font-weight:300;
+	font-size: 12px;
+	line-height:30px;
+	color:#777;
+	background:grey;
+}
+
+.container {
+	max-width:400px;
+	width:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+
+#contact {
+	background:#F9F9F9;
+	padding:25px;
+	margin:50px 0;
+}
+
+#contact h3 {
+	color: black;
+	display: block;
+	font-size: 30px;
+	font-weight: 400;
+}
+
+#contact h4 {
+	margin:5px 0 15px;
+	display:block;
+	font-size:13px;
+}
+
+fieldset {
+	border: medium none !important;
+	margin: 0 0 10px;
+	min-width: 100%;
+	padding: 0;
+	width: 100%;
+}
+
+input, textarea {
+	width:100%;
+	border:1px solid #CCC;
+	background:#FFF;
+	margin:0 0 5px;
+	padding:10px;
+}
+
+
+
+#contact textarea {
+	height:100px;
+	max-width:100%;
+  resize:none;
+}
+
+ 
+
+</style>
+
+<div class="container" >  
+  <form id="contact" action="https://formsubmit.co/akjhajha88@gmail.com"  method="POST">
+    <h3>Enter Details</h3>
+    <h4>Details will be save in local storage</h4>
+    <fieldset>
+      <input placeholder="Your name" type="text" id="name"  autofocus>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Your Email Address" type="email" name="name" id="email"  >
+    </fieldset>
+    <fieldset>
+      <input placeholder="Your Phone Number" type="tel" name="tel" id="mob" >
+    </fieldset>
+  
+    <fieldset>
+      <textarea placeholder="Type your Message Here...."  name="comment" id="message" ></textarea>
+    </fieldset>
+    <fieldset>
+      <button    onclick='save()'>Submit</button>
+    </fieldset>
+  </form>
+
+ 
+  
+</div>
+</html>
